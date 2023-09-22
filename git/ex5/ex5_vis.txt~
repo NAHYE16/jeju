@@ -1,0 +1,20 @@
+includeFile = iec.txt
+
+
+s:Gr/jeju/Type          = "OpenGL"
+i:Gr/jeju/WindowSizeX   = 600
+i:Gr/jeju/WindowSizeY   = 600
+i:Gr/jeju/WindowPosX    = 0
+i:Gr/jeju/WindowPosY    = 0
+u:Gr/jeju/Zoom          = 1.2
+d:Gr/jeju/Theta         = 30. deg
+d:Gr/jeju/Phi           = 30. deg
+
+s:Gr/jeju/AxesComponent  = "World"
+b:Gr/jeju/IncludeAxes    = "true"
+d:Gr/jeju/AxesSize       = 30.0 cm
+
+b:Gr/jeju/IncludeGeometry                  = "t"
+b:Gr/jeju/IncludeTrajectories              = "t"
+b:Gr/jeju/HiddenLineRemovalForGeometry     = "f"
+b:Gr/jeju/HiddenLineRemovalForTrajectories = "f"

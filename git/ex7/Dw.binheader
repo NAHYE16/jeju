@@ -1,0 +1,9 @@
+# TOPAS Version: 3.9
+# Parameter File: ex7_vis.txt
+# Results for scorer: Dw
+# Scored in component: DoseGrid
+# X in 10 bins of 1 cm
+# Y in 10 bins of 1 cm
+# Z in 10 bins of 1 cm
+# DoseToWater ( Gy ) : Sum   
+# Binary file: Dw.bin

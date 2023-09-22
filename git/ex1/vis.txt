@@ -1,0 +1,14 @@
+
+s:Gr/MyOGL/Type                             = "OpenGL"
+#b:Gr/MyOGL/CopyOpenGLToEPS                  = "True"
+i:Gr/MyOGL/WindowSizeX                      = 600
+i:Gr/MyOGL/WindowSizeY                      = 600
+i:Gr/MyOGL/WindowPosX                       = 0
+i:Gr/MyOGL/WindowPosY                       = 0
+u:Gr/MyOGL/Zoom                             = 1.2
+d:Gr/MyOGL/Theta                            = 30. deg
+d:Gr/MyOGL/Phi                              = 30. deg
+b:Gr/MyOGL/IncludeGeometry                  = "t"
+b:Gr/MyOGL/IncludeTrajectories              = "t"
+b:Gr/MyOGL/HiddenLineRemovalForGeometry     = "f"
+b:Gr/MyOGL/HiddenLineRemovalForTrajectories = "f"

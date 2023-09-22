@@ -1,0 +1,11 @@
+d:Ge/Phantom/HLX = 10. cm 
+u:Gr/MyOGL/Zoom = 1.2
+i:Sc/DoseScorer/ZBins = 100 
+b:Sc/DoseScorer/Active = "True" 
+s:Ge/Phantom/Material = "G4_WATER" 
+iv:Gr/Color/yellow = 3 225 255 0 
+
+#s:Ge/Phantom/Type   = "TsBox"
+#s:Ge/Phantom/Parent = "world"
+#s:Ge/Phantom/Type   = "TsBox"
+#s:Ge/P/h/a/n/t/o/m/Parent = "world"

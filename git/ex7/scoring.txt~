@@ -1,0 +1,22 @@
+includeFile = dicom.txt
+
+####################################################
+#----------------- DoseGrid  --------------------
+####################################################
+s:Ge/DoseGrid/Type     = "TsBox"
+s:Ge/DoseGrid/Parent   = "World"
+b:Ge/DoseGrid/IsParallel = "True"
+#s:Ge/DoseGrid/Material = "G4_WATER"
+d:Ge/DoseGrid/HLX      = 5.0 cm
+d:Ge/DoseGrid/HLY      = 5.0 cm
+d:Ge/DoseGrid/HLZ      = 5.0 cm
+d:Ge/DoseGrid/TransX  = Ge/patient_iso/TransX cm
+d:Ge/DoseGrid/TransY  = Ge/patient_iso/TransY cm
+d:Ge/DoseGrid/TransZ  = Ge/patient_iso/TransZ cm
+d:Ge/DoseGrid/RotX    = 0. deg
+d:Ge/DoseGrid/RotY    = 0. deg
+d:Ge/DoseGrid/RotZ    = 0. deg
+s:Ge/DoseGrid/Color  = "blue"
+i:Ge/DoseGrid/XBins  = 10 
+i:Ge/DoseGrid/YBins  = 10 
+i:Ge/DoseGrid/ZBins  = 10  

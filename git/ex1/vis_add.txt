@@ -1,0 +1,3 @@
+includeFile = vis.txt
+
+Gr/MyOGL/Zoom = 0.2

@@ -1,0 +1,15 @@
+includeFile = dicom.txt
+
+s:Tf/Gantry_rotation/Function           = "Linear deg"
+d:Tf/Gantry_rotation/Rate               = -1.2 deg/s
+d:Tf/Gantry_rotation/StartValue         = 0.0 deg
+d:Tf/Gantry_rotation/RepetitionInterval = 50.0 s
+
+s:Tf/Couch_rotation/Function           = "Linear deg"
+#important
+d:Tf/Couch_rotation/Rate               = 1.2 deg/s 
+d:Tf/Couch_rotation/StartValue         = 0.0 deg
+d:Tf/Couch_rotation/RepetitionInterval = 50.0 s
+
+Ge/IEC_G/RotY   = Tf/Gantry_rotation/Value deg
+Ge/IEC_PSS/RotZ = Tf/Couch_rotation/Value deg

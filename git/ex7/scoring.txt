@@ -1,0 +1,49 @@
+includeFile = dicom.txt
+
+##############################################
+#---------- Overriding parameters ------------
+##############################################
+
+i:Ts/ShowHistoryCountAtInterval = 1000
+Ph/Default/Modules = 6 "g4em-standard_opt4" "g4h-phy_QGSP_BERT_HP" "g4decay" "g4ion-binarycascade" "g4h-elastic_HP" "g4stopping"
+
+####################################################
+#----------------- DoseGrid  --------------------
+####################################################
+s:Ge/DoseGrid/Type     = "TsBox"
+s:Ge/DoseGrid/Parent   = "World"
+b:Ge/DoseGrid/IsParallel = "True"
+#s:Ge/DoseGrid/Material = "G4_WATER"
+d:Ge/DoseGrid/HLX      = 5.0 cm
+d:Ge/DoseGrid/HLY      = 5.0 cm
+d:Ge/DoseGrid/HLZ      = 5.0 cm
+d:Ge/DoseGrid/TransX  = Ge/patient_iso/TransX cm
+d:Ge/DoseGrid/TransY  = Ge/patient_iso/TransY cm
+d:Ge/DoseGrid/TransZ  = Ge/patient_iso/TransZ cm
+d:Ge/DoseGrid/RotX    = 0. deg
+d:Ge/DoseGrid/RotY    = 0. deg
+d:Ge/DoseGrid/RotZ    = 0. deg
+s:Ge/DoseGrid/Color  = "blue"
+i:Ge/DoseGrid/XBins  = 10 
+i:Ge/DoseGrid/YBins  = 10 
+i:Ge/DoseGrid/ZBins  = 10
+
+#############################################
+#----------------- scorer --------------------
+#############################################
+
+s:Sc/Dw/Quantity                        = "DoseToWater"
+s:Sc/Dw/Component                       = "DoseGrid"
+s:Sc/Dw/OutputFile                      = "Dw"
+s:Sc/Dw/OutputType                      = "binary"
+s:Sc/Dw/IfOutputFileAlreadyExists       = "OverWrite"
+b:Sc/Dw/PreCalculateStoppingPowerRatios = "True"
+b:Sc/Dw/OutputToConsole                 = "FALSE"
+
+s:Sc/Dm/Quantity                        = "DoseToMedium"
+s:Sc/Dm/Component                       = "patient_body"
+s:Sc/Dm/OutputFile                      = "Dm"
+s:Sc/Dm/OutputType                      = "csv"
+s:Sc/Dm/IfOutputFileAlreadyExists       = "OverWrite"
+b:Sc/Dm/PreCalculateStoppingPowerRatios = "True"
+b:Sc/Dm/OutputToConsole                 = "True"

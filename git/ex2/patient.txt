@@ -1,0 +1,135 @@
+###################################################
+# Resize world
+###################################################o
+d:Ge/World/HLX       = 0.6 m
+d:Ge/World/HLY       = 0.6 m
+d:Ge/World/HLZ       = 0.6 m
+
+###################################################
+# Coordination
+###################################################o
+
+# DICOM
+s:Ge/DICOM/Type   = "Group"
+s:Ge/DICOM/Parent = "World"
+d:Ge/DICOM/TransX = 0 mm
+d:Ge/DICOM/TransY = 0 mm
+d:Ge/DICOM/TransZ = 0 mm
+d:Ge/DICOM/RotX   = 0.0 deg
+d:Ge/DICOM/RotY   = 0.0  deg
+d:Ge/DICOM/RotZ   = 0.0  deg
+
+####################################################
+##------ Patient CT  -----
+####################################################
+
+# img-center
+s:Ge/patient/Type   = "Group"
+s:Ge/patient/Parent = "DICOM"
+d:Ge/patient/TransX = 0.0 mm
+d:Ge/patient/TransY = 0.0 mm
+d:Ge/patient/TransZ = 0.0 mm
+d:Ge/patient/RotX   = 0.0 deg   
+d:Ge/patient/RotY   = 0.0 deg 
+d:Ge/patient/RotZ   = 0.0 deg
+
+# Sphere
+s:Ge/patient_head/Type                 = "TsSphere"
+s:Ge/patient_head/Parent               = "patient"
+s:Ge/patient_head/Material             = "Air"
+d:Ge/patient_head/TransZ               = 22 cm
+dc:Ge/patient_head/RMax                 = 5 cm #original 5 cm
+s:Ge/patient_head/DrawingStyle         = "FullWireFrame"
+s:Ge/patient_head/Color                = "grass"
+
+#
+s:Ge/patient_body/Type                    = "G4Trd"
+s:Ge/patient_body/Parent                  = "patient"
+s:Ge/patient_body/Material                = "Air"
+d:Ge/patient_body/TransX                  = 0 cm
+d:Ge/patient_body/TransY                  = 0 cm
+d:Ge/patient_body/TransZ                  = 0 cm
+d:Ge/patient_body/RotX                    = 0 deg
+d:Ge/patient_body/RotY                    = 0 deg
+d:Ge/patient_body/RotZ                    = 0 deg
+d:Ge/patient_body/HLX1                    = 6. cm
+d:Ge/patient_body/HLX2                    = 10. cm
+d:Ge/patient_body/HLY1                    = 2. cm
+d:Ge/patient_body/HLY2                    = 2. cm
+d:Ge/patient_body/HLZ                     = 15 cm
+s:Ge/patient_body/Color                   = "violet"
+
+#prescription-isocenter in body
+s:Ge/patient_iso/Type                 = "TsSphere"
+s:Ge/patient_iso/Parent               = "patient_body"
+s:Ge/patient_iso/Material             = "Air"
+d:Ge/patient_iso/RMax                 = 6.6 mm #2-sigma
+s:Ge/patient_iso/DrawingStyle         = "solid"
+s:Ge/patient_iso/Color                = "grass"
+# Isocenter
+dc:Ge/patient_iso/TransX               = 5.0 cm  # here !!!
+dc:Ge/patient_iso/TransY               = 0.0 cm  # here !!!
+dc:Ge/patient_iso/TransZ               = 10.0 cm # here !!!
+
+
+# Left arm
+s:Ge/patient_larm/Type               = "TsCylinder"
+s:Ge/patient_larm/Parent             = "patient"
+s:Ge/patient_larm/Material           = "Air"
+d:Ge/patient_larm/RMax               = 15 mm
+d:Ge/patient_larm/HL                 = 7 cm
+s:Ge/patient_larm/Color              = "red"
+s:Ge/patient_larm/DrawingStyle       = "solid"
+
+d:Ge/patient_larm/TransX             = 17.5 cm 
+d:Ge/patient_larm/TransY             = 0 cm    
+d:Ge/patient_larm/TransZ             = 12 cm   
+
+d:Ge/patient_larm/RotX             = 0  deg
+d:Ge/patient_larm/RotY             = 80 deg
+d:Ge/patient_larm/RotZ             = 0 deg
+
+# right arm
+s:Ge/patient_rarm/Type               = "TsCylinder"
+s:Ge/patient_rarm/Parent             = "patient"
+s:Ge/patient_rarm/Material           = "Air"
+d:Ge/patient_rarm/RMax               = Ge/patient_larm/RMax mm
+d:Ge/patient_rarm/HL                 = Ge/patient_larm/HL cm
+s:Ge/patient_rarm/Color              = "lightblue"
+s:Ge/patient_rarm/DrawingStyle       = "solid"
+
+d:Ge/patient_rarm/TransX             = -1.0 * Ge/patient_larm/TransX  cm
+d:Ge/patient_rarm/TransY             = 0 cm
+d:Ge/patient_rarm/TransZ             = Ge/patient_larm/TransZ cm
+
+d:Ge/patient_rarm/RotX             = 0  deg
+d:Ge/patient_rarm/RotY             = -1.0 * Ge/patient_larm/RotY deg 
+d:Ge/patient_rarm/RotZ             = 0 deg
+
+# Left leg
+s:Ge/patient_lleg/Type               = "TsCylinder"
+s:Ge/patient_lleg/Parent             = "patient"
+s:Ge/patient_lleg/Material           = "Air"
+d:Ge/patient_lleg/RMax               = 15 mm
+d:Ge/patient_lleg/HL                 = 7 cm
+s:Ge/patient_lleg/Color              = "red"
+s:Ge/patient_lleg/DrawingStyle       = "solid"
+
+d:Ge/patient_lleg/TransX             = 3 cm
+d:Ge/patient_lleg/TransY             = 0 cm
+d:Ge/patient_lleg/TransZ             = -23 cm
+
+# right leg
+s:Ge/patient_rleg/Type               = "TsCylinder"
+s:Ge/patient_rleg/Parent             = "patient"
+s:Ge/patient_rleg/Material           = "Air"
+d:Ge/patient_rleg/RMax               = Ge/patient_lleg/RMax mm
+d:Ge/patient_rleg/HL                 = Ge/patient_lleg/HL cm
+s:Ge/patient_rleg/Color              = "lightblue"
+s:Ge/patient_rleg/DrawingStyle       = "solid"
+
+d:Ge/patient_rleg/TransX             = -1.0 * Ge/patient_lleg/TransX  cm
+d:Ge/patient_rleg/TransY             = 0 cm
+d:Ge/patient_rleg/TransZ             = Ge/patient_lleg/TransZ cm
+
+#Ts/PauseBeforeQuit = "True"

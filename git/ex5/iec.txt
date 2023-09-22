@@ -1,0 +1,54 @@
+includeFile = source.txt
+includeFile = patient.txt
+
+###################################################
+# To avoid parameter duplication
+###################################################
+
+Ge/World/HLX       = 0.6 m
+Ge/World/HLY       = 0.6 m
+Ge/World/HLZ       = 0.6 m
+
+Ph/Default/Modules = 1 "Transportation_only"
+
+# Perform simulation from 0 to 50 sec with 50 steps
+d:Tf/TimelineEnd = 50. s
+i:Tf/NumberOfSequentialTimes = 50
+
+i:Ts/ShowHistoryCountAtInterval = 10
+
+
+####################################################
+# IEC_PSS: Patient support system
+###################################################
+
+# Patient support system
+# but it may be ecentric system
+s:Ge/IEC_PSS/Parent  = "World"
+s:Ge/IEC_PSS/Type    = "Group"
+d:Ge/IEC_PSS/RotX    = 0. deg
+d:Ge/IEC_PSS/RotY    = 0. deg 
+dc:Ge/IEC_PSS/RotZ   = 0. deg
+d:Ge/IEC_PSS/TransX  = 0. m
+d:Ge/IEC_PSS/TransY  = 0. m
+d:Ge/IEC_PSS/TransZ  = 0. m
+
+#
+s:Ge/DICOM_to_IEC/Type   = "Group"
+s:Ge/DICOM_to_IEC/Parent = "IEC_PSS"
+d:Ge/DICOM_to_IEC/TransX = 0 mm
+d:Ge/DICOM_to_IEC/TransY = 0 mm
+d:Ge/DICOM_to_IEC/TransZ = 0 mm
+d:Ge/DICOM_to_IEC/RotX   = 90.0 deg
+d:Ge/DICOM_to_IEC/RotY   = 0.0  deg
+d:Ge/DICOM_to_IEC/RotZ   = 0.0  deg
+
+# move target iso onto center of DICOM
+Ge/DICOM/TransX = -1.0 * Ge/patient_iso/TransX mm
+Ge/DICOM/TransY = -1.0 * Ge/patient_iso/TransY mm
+Ge/DICOM/TransZ = -1.0 * Ge/patient_iso/TransZ mm
+
+# place DICOM onto DICOM_to_IEC
+Ge/DICOM/Parent = "DICOM_to_IEC"
+
+

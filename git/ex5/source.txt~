@@ -1,0 +1,100 @@
+###################################################
+# Resize world
+###################################################o
+d:Ge/World/HLX       = 0.6 m
+d:Ge/World/HLY       = 0.6 m
+d:Ge/World/HLZ       = 0.6 m
+
+####################################################
+#------------- Gantry coordinate system ------------
+
+####################################################
+
+# IEC_G: Gantry
+s:Ge/IEC_G/Parent  = "World"
+s:Ge/IEC_G/Type    = "Group"
+d:Ge/IEC_G/RotX    = 0. deg
+dc:Ge/IEC_G/RotY   = 0. deg  # Here !!!
+d:Ge/IEC_G/RotZ    = 0. deg
+d:Ge/IEC_G/TransX  = 0. m
+d:Ge/IEC_G/TransY  = 0. m
+d:Ge/IEC_G/TransZ  = 0. m
+
+####################################################
+#------------------- Time Feature -------------
+# time-control of spot-holder's position
+# raster scan:
+#   - linear motion for x
+#   - step motion for y
+####################################################
+
+# Create a time feature that creates a decreasing magnetic field.
+# (-5.0 to 5.0) during 10 sec
+s:Tf/ScanX_plus/Function           = "Linear cm"
+d:Tf/ScanX_plus/Rate               = 1.0 cm/s
+d:Tf/ScanX_plus/StartValue         = -5.0 cm
+d:Tf/ScanX_plus/RepetitionInterval = 10.0 s
+
+# (5.0 to -5.0) during 10 sec
+s:Tf/ScanX_minus/Function           = "Linear cm"
+d:Tf/ScanX_minus/Rate               = -1.0 cm/s
+d:Tf/ScanX_minus/StartValue         = 5.0 cm
+d:Tf/ScanX_minus/RepetitionInterval = 10.0 s
+
+# combine above two
+s:Tf/ScanX/Function = "Step"
+dv:Tf/ScanX/Times   = 2 10. 20. s
+dv:Tf/ScanX/Values  = 2 Tf/ScanX_plus/Value Tf/ScanX_minus/Value cm
+
+s:Tf/ScanY/Function = "Step"
+dv:Tf/ScanY/Times   = 5 10. 20.0 30.0 40.0 50.0 s
+dv:Tf/ScanY/Values  = 5 5.0 2.5 0.0 -2.5 -5.0 cm
+
+# Perform simulation from 0 to 50 sec with 50 steps
+d:Tf/TimelineEnd = 50. s
+i:Tf/NumberOfSequentialTimes = 50
+
+Ph/Default/Modules = 1 "Transportation_only" 
+
+####################################################
+#------------------- Spot holder -------------
+# - Beam flies 0 to +z. Y rotation 180 deg
+####################################################
+s:Ge/SpotHolder/Type    = "Group"
+s:Ge/SpotHolder/Parent  = "IEC_G"
+#
+d:Ge/SpotHolder/TransX  = Tf/ScanX/Value cm
+d:Ge/SpotHolder/TransY  = Tf/ScanY/Value cm
+dc:Ge/SpotHolder/TransZ  = 20.0 cm
+
+#Rotate spot coordination
+d:Ge/SpotHolder/RotX    = -180.0 deg
+d:Ge/SpotHolder/RotY    = 0. deg
+d:Ge/SpotHolder/RotZ    = 0. deg
+
+####################################################
+#----------------- Spot properties -----------------
+# 
+####################################################
+#-- Type
+s:So/Spot/Type           = "emittance"
+s:So/Spot/Component		 = "SpotHolder"
+s:So/Spot/BeamParticle	 = "proton"
+s:So/Spot/Distribution   = "BiGaussian"
+
+#-- Emittance spot
+#-- X,Y position sampled out-of 4 will not be used
+dc:So/Spot/SigmaX      = 2.0 mm
+uc:So/Spot/SigmaXprime = 0.0
+uc:So/Spot/CorrelationX = 0
+
+dc:So/Spot/SigmaY      = 1.0 mm
+uc:So/Spot/SigmaYprime = 0.0
+uc:So/Spot/CorrelationY = 0
+
+#-- Energy
+d:So/Spot/BeamEnergy             = 100 MeV
+u:So/Spot/BeamEnergySpread       = 0.1
+i:So/Spot/NumberOfHistoriesInRun = 100
+
+i:Ts/ShowHistoryCountAtInterval = 10

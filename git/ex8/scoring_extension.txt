@@ -1,0 +1,11 @@
+includeFile = scoring.txt
+
+# TrackEndCount
+s:Sc/TEC/Quantity                        = "TrackEndCount"
+s:Sc/TEC/Component                       = "DoseGrid"
+s:Sc/TEC/OutputFile                      = "TEC"
+s:Sc/TEC/OutputType                      = "binary"
+s:Sc/TEC/IfOutputFileAlreadyExists       = "OverWrite"
+b:Sc/TEC/PreCalculateStoppingPowerRatios = "True"
+b:Sc/TEC/OutputToConsole                 = "FALSE"
+
